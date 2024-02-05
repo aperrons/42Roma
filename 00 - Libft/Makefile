@@ -5,63 +5,72 @@
 #                                                     +:+ +:+         +:+      #
 #    By: aperrone <aperrone@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/27 09:29:45 by gdel-giu          #+#    #+#              #
-#    Updated: 2023/06/05 15:57:00 by aperrone         ###   ########.fr        #
+#    Created: 2023/01/04 09:37:55 by aperrone          #+#    #+#              #
+#    Updated: 2023/03/13 02:35:37 by aperrone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT = libft.a
-LISTFT = liblistft.a
-LIBGNL = libgetnextline.a
+NAME = minishell
 
-DIR1 = ../srcs/libft
-DIR2 = ../srcs/listft
-DIR3 = ../srcs/get_next_line
-SRCS = *.c
-FSRCS1 = ${wildcard $(DIR1)/$(SRCS)}
-FSRCS2 = ${wildcard $(DIR2)/$(SRCS)}
-FSRCS3 = ${wildcard $(DIR3)/$(SRCS)}
+MAIN = main.c
+INC = includes/program.h
 
-OBJS1 = $(FSRCS1:.c=.o)
-OBJS2 = $(FSRCS2:.c=.o)
-OBJS3 = $(FSRCS3:.c=.o)
+SRCS = srcs/
+LIBFT = libft/
+LISTFT = listft/
+PRGMFT = programft/
+READ = -lreadline #-L/usr/include -lreadline -L$$HOME/.brew/opt/readline/lib -I $$HOME/.brew/opt/readline/include/readline
+FILES = *.c
+# INFO = "
+# 	            _/\_/)
+# 	           (),~  (
+# 	   /\______///   \(
+# 	 _/x       (/\    )'
+# 	[_,        )==\  /
+# 	  \ )_____(( (( /
+# 	  |||   /// ///
+# 	   ~    ~~  ~~
+# \n\n"
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I.
+FLAGS = -Wall -Wextra -Werror
+DEBUGGER = -g
 
-all: $(LIBFT) $(LISTFT) $(LIBGNL) 
+OBJS = *.o
 
-$(LIBFT): $(OBJS1)
-	ar rcs $(LIBFT) $(OBJS1)
+$(OBJS):
+	@gcc	$(READ) $(MAIN) \
+			$(SRCS)$(LISTFT)$(FILES) \
+			$(SRCS)$(LIBFT)$(FILES) \
+			$(SRCS)$(PRGMFT)$(FILES) \
+			-o $(NAME)
+			@make -C ./builtins
+#@echo	"\033[1;35mType ./piggyshell and the world will be yours!"
 
-$(LISTFT): $(OBJS2)
-	ar rcs $(LISTFT) $(OBJS2)
+d:
+	@gcc	$(DEBUGGER) $(READ) $(MAIN) \
+			$(SRCS)$(LISTFT)$(FILES) \
+			$(SRCS)$(LIBFT)$(FILES) \
+			$(SRCS)$(PRGMFT)$(FILES) \
+			-o $(NAME)
+			@make -C ./builtins
 
-$(LIBGNL): $(OBJS3)
-	ar rcs $(LIBGNL) $(OBJS3)
-
-$(DIR1)/%.o: $(DIR1)/%.c
-	$(CC) -c $(CFLAGS) $< -o $@
-	
-$(DIR2)/%.o: $(DIR2)/%.c
-	$(CC) -c $(CFLAGS) $< -o $@
-
-$(DIR3)/%.o: $(DIR3)/%.c
-	$(CC) -c $(CFLAGS) $< -o $@
+$(NAME): 
+	@make $(OBJS)
+	@make clean
 
 clean:
-	rm -f $(OBJS1)
-	rm -f $(OBJS2)
-	rm -f $(OBJS3)
+	@rm -f $(OBJS)
+
+fclean: 
+	@make clean
+	@make fclean -C ./builtins
+	@rm -f $(NAME)
+
+re:
+	@make fclean
+	@make
+
+pig:
+	bash ./_piggyInf
 	
-fclean: clean
-	rm -f $(OBJS1)
-	rm -f $(OBJS2)
-	rm -f $(OBJS3)
-	rm -f $(LIBFT)
-	rm -f $(LISTFT)
-	rm -f $(LIBGNL)
-
-re: fclean $(LIBFT) $(LISTFT) $(LIBGNL)
-
-.PHONY: all clean fclean re
+.PHONY: all clean fclean
