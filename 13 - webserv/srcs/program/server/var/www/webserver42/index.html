@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title> Card </title>
+		<link rel="stylesheet" type="text/css" href="card.css">
+		<script type="text/javascript" src="ohWowA.js"></script>
+	</head>
+	<body>
+		<table id="tab">
+			<thead>
+				<tr id="row">
+					<th id="item">
+						<div class="card">
+							<div class="imgBox">
+								<img src="imgs/Peppa.jpeg">
+							</div>
+							<div class="content">
+								<div class="details">
+									<h2>Peppa Crock<br><span>42Roma Student</span></h2>
+									<div class="actionButton">
+										<button onclick="addCell()">Contact</button>
+										<button>Follow</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</th>
+					<th>
+						<div class="card">
+							<div class="imgBox">
+								<img src="imgs/Pippo.jpeg">
+							</div>
+							<div class="content">
+								<div class="details">
+									<h2>Pippo Ciot<br><span>42Roma Student</span></h2>
+									<div class="actionButton">
+										<button>Contact</button>
+										<button>Follow</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</th>
+					<th>
+						<div class="card">
+							<div class="imgBox">
+								<img src="imgs/Topopipo.jpeg">
+							</div>
+							<div class="content">
+								<div class="details">
+									<h2>Peppe Crack<br><span>42Roma Student</span></h2>
+									<div class="actionButton">
+										<button>Contact</button>
+										<button>Follow</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</th>
+				</tr>
+			</thead>
+		</table>
+	</body>
+	<footer>
+		<div>
+			<hr>
+			<form action="127.0.0.1:4242/upload" method="post" enctype="multipart/form-data">
+				<input type="file" name="fileToUpload" id="fileToUpload">
+				<input type="submit" value="Upload" name="submit">
+			</form>
+			<div id="fileList">
+				<h3>File On</h3>
+			</div>
+			<hr>
+			<p>&#169pdelg42</p>
+		</div>
+	</footer>
+</html>
