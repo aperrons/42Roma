@@ -11,38 +11,40 @@
 /* ************************************************************************** */
 
 #include "headers/Bureaucrat.hpp"
+#include "headers/Form.hpp"
 
 int main(void) {
 
+    Bureaucrat head = Bureaucrat("Head", 1);
+    Bureaucrat mid = Bureaucrat("Mid", 70);
+    Bureaucrat tail = Bureaucrat("Tail", 150);
+
     try {
-        Bureaucrat head = Bureaucrat("Head", 1);
-        std::cout << head << std::endl;
-        head.decrementGrade();
-        std::cout << head << std::endl;
-        head.incrementGrade();
-        std::cout << head << std::endl;
-        head.incrementGrade();
-        std::cout << head << std::endl;
-        head.incrementGrade();
-        std::cout << head << std::endl;
+        Form one = Form("Form one", 1, 1, false);
+        std::cout << one << std::endl;
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
 
     try {
-        Bureaucrat tooHigh = Bureaucrat("TooHigh", 0);
-        std::cout << tooHigh << std::endl;
+        Form two = Form("Form two", 70, 70, false);
+        std::cout << two << std::endl;
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
 
-    try {
-        Bureaucrat tooLow = Bureaucrat("TooLow", 151);
-        std::cout << tooLow << std::endl;
+    try { 
+        Form three = Form("Form three", 150, 150, false);
+        std::cout << three << std::endl;
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
 
+    Form one = Form("Form one", 1, 1, false);
+    std::cout << one << std::endl;
+    Form two = Form("Form two", 70, 70, false);
+    one = two;
+    std::cout << one << std::endl;
     
     return 0;
 }

@@ -13,16 +13,25 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
+#include "FormException.hpp"
+#include "Bureaucrat.hpp"
+
 #include <iostream>
 
 class Form {
     public:
         Form();
+        Form(const std::string name, const int gradeToSign, const int gradeToExecute, const bool isSigned);
+        Form(const Form& form);
+        Form& operator=(const Form& form);
+        ~Form();
 
         const std::string&  getName() const;
-        const int           getGradeToSign() const;
-        const int           getGradeToExecute() const;
-        const bool          getIsSigned() const;
+        int                 getGradeToSign() const;
+        int                 getGradeToExecute() const;
+        bool                getIsSigned() const;
+
+        //void                beSigned(const Bureaucrat& bureaucrat);
 
     private: 
         const std::string   name_;
