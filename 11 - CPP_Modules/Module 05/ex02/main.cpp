@@ -11,7 +11,11 @@
 /* ************************************************************************** */
 
 #include "headers/Bureaucrat.hpp"
-#include "headers/Form.hpp"
+#include "headers/AForm.hpp"
+#include "srcs/PresidentialPardonForm.cpp"
+#include "srcs/RobotomyRequestForm.cpp"
+#include "srcs/ShrubberyCreationForm.cpp"
+
 
 int main(void) {
 
@@ -20,33 +24,36 @@ int main(void) {
     Bureaucrat tail = Bureaucrat("Tail", 150);
 
     try {
-        Form one = Form("Form one", 1, 1, false);
-        std::cout << one << std::endl;
+        ShrubberyCreationForm one = ShrubberyCreationForm("home");
+        one.execute(tail);
+       
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
-
+/*
     try {
-        Form two = Form("Form two", 70, 70, false);
-        std::cout << two << std::endl;
+        RobotomyRequestForm two = RobotomyRequestForm();
+        //std::cout << two.execute(mid) << std::endl;
+        two.execute(mid);
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
 
     try { 
-        Form three = Form("Form three", 150, 150, false);
-        std::cout << three << std::endl;
+        ShrubberyCreationForm three = ShrubberyCreationForm();
+        //std::cout << three.execute(tail) << std::endl;
+        three.execute(tail);
     } catch (std::exception& e) {
         std::cerr << e.what() << std::endl;
-    }
+    }*/
 
-    Form one = Form("Form one", 1, 1, false);
-    std::cout << one << std::endl;
+   // AForm one = AForm("Form one", 1, 1, false);
+    //std::cout << one << std::endl;
   //  Form two = Form("Form two", 70, 70, false);
    // one = two;
     //std::cout << one << std::endl;
     
    // one.beSigned(head);
-   head.signForm(one);
+   //head.signForm(one);
     return 0;
 }

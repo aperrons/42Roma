@@ -6,11 +6,11 @@
 #    By: aperrone <aperrone@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 01:16:53 by aperrone          #+#    #+#              #
-#    Updated: 2023/07/04 17:48:50 by aperrone         ###   ########.fr        #
+#    Updated: 2023/07/31 11:23:13 by aperrone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Animal
+NAME = bureaucrat
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 CCVERSION = -std=c++98
