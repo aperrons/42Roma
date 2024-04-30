@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcendence App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+
+    <button id="welcomeButton">Benvenuto nella SPA Transcendence!</button>
+
+    <div id="buttonContainer" style="display: none;">
+        <button id="loginButton">Login</button>
+        <button id="registerButton">New User</button>
+    </div>
+
+    <div id="loginForm" style="display: none;">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button id="loginInButton">Login</button>
+    </div>
+
+    <div id="errorMessages" style="display: none;"></div>
+
+    <div id="registerForm" style="display: none;">
+        <h2>Register</h2>
+        <form id="form">
+            <input type="text" id="firstName" placeholder="Nome">
+            <input type="text" id="lastName" placeholder="Cognome">
+            <input type="date" id="birthDate" placeholder="Data di Nascita">
+            <input type="email" id="email" placeholder="Email">
+            <input type="text" id="newUsername" placeholder="Username">
+            <input type="password" id="newPassword" placeholder="Password">
+            <button type="submit" id="registerSubmitButton" disabled="true">Register</button>
+        </form>
+    </div>
+
+    <div id="main-content"></div>
+
+    <div id="userDetails" style="display: none;"></div>
+
+    <script type="module" src="app.js"></script>
+    <script type="module" src="registration.js"></script>
+    <script type="module" src="login.js"></script>
+    <script type="module" src="userpage.js"></script>
+
+
+</body>
+</html>
