@@ -3,7 +3,7 @@ import { getCsrfToken } from '/utils.js'
 
 document.getElementById('loginInButton').addEventListener('click', login);
 
-function login(event) {
+async function login(event) {
     event.preventDefault();
 
     const username = document.getElementById('username').value;
@@ -19,32 +19,30 @@ function login(event) {
 
     console.log(userData);
 
-    fetch('/api/login/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json',
-        'X-CSRFToken': csrfToken
-    },
-        body: JSON.stringify(userData),
-        credentials: 'include'
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else if (response.status === 400 || response.status === 401) {
-            return response.json().then(data => {
-                return Promise.reject(data.error);
-            });
-        } else {
-            return Promise.reject('An unexpected error occurred');
+    try {
+        const response = await fetch('/api/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(userData),
+            credentials: 'include'  // Include i cookie nella richiesta per gestire la sessione CSRF
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to login');
         }
-    })
-    .then(data => {
+
+        const data = await response.json();
         console.log('Login successful:', data);
-        userpage(data.user);
-    })
-    .catch(error => {
-        console.log('Handled error:', error);
-    });
+        window.AppData.user = data;
+        userpage(data.user);  // Chiama una funzione che gestisce la navigazione dell'utente loggato
+    } catch (error) {
+        console.error('Login failed:', error);  // Mostra un messaggio di errore più appropriato
+        alert('Login failed: ' + error.message);  // Avvisa l'utente del fallimento del login
+    }
 }
 
 

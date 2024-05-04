@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
     path('api/csrf/', views.csrf, name='csrf'),
@@ -24,4 +25,8 @@ urlpatterns = [
     path('api/register/', views.register_view, name='register'),
     path('api/login/', views.login_view, name='login'),
     path('api/logout/', views.logout_view, name='logout'),
+    path('api/login/changeusername', views.change_username_view, name='login'),
+    path('api/token/refreshtoken', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/42oauth_start/', views.login42_start, name='login42_start'),
+    path('api/42oauth/', views.login42_oauth, name='login42_oauth'),
 ]

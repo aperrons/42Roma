@@ -11,6 +11,17 @@ const userData = {
 
 userpage(userData);*/
 
+/*const routes = {
+    '/' : home
+};
+
+const rootDiv = document.getElementById('root');
+rootDiv.innerHTML = routes[window.location.pathname];
+*/
+window.AppData = {
+    user: null
+}
+
 let csrfToken;
 
 window.onload = function() {

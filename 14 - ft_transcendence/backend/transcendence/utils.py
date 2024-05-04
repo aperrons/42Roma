@@ -34,6 +34,35 @@ def create_user_from_data(data):
         password=data['password']
     )
 
+def create_user_from_42data(data):
+
+    user, created = User.objects.get_or_create(
+        username=data['login'],
+        defaults={
+            'first_name': data['first_name'],
+            'last_name': data['last_name'],
+            'birth_date': None,
+            'email': data['email'],
+            'registered_via_oauth': True
+        }
+    )
+
+    if created:
+        user.set_unusable_password()
+        #user.registered_via_oauth = True
+        user.status = True
+        user.save()
+    return user
+'''
+    return User.objects.create_user(
+        first_name=data['first_name'],
+        last_name=data['last_name'],
+        birth_date=None,
+        registered_via_oauth=True,
+        email=data['email'],
+        username=data['login'],
+    )
+'''
 def filter_users(friends):
     friends_data = []
 

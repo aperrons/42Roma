@@ -83,10 +83,9 @@ function checkFormValidity() {
 }
 
 
-function register(event) {
+async function register(event) {
     event.preventDefault();
     if (document.getElementById('registerSubmitButton').disabled) {
-        
         alert('Correggi gli errori nel form prima di registrarti.');
         return;
     }
@@ -102,25 +101,29 @@ function register(event) {
 
     const csrfToken = getCsrfToken();
 
-    fetch('/api/register/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken
-        },
-        body: JSON.stringify(userData),
-        credentials: 'include'
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.user) {
-            console.log('Success:', data);
-            userpage(data.user);
-        } else {
-            console.error('Error:', data.error);
+    try {
+        const response = await fetch('/api/register/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify(userData),
+            credentials: 'include'
+        });
+    
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to register');
         }
-    })
-    .catch((error) => {
-        console.error('Network error', error);
-    });
+
+        const data = await response.json();
+
+        window.AppData.user = data;
+        console.log(window.AppData.user);
+        userpage(data.user);  // Chiama una funzione che gestisce la navigazione dell'utente loggato
+    } catch (error) {
+        alert('Registration failed: ' + error.message);  // Avvisa l'utente del fallimento del login
+    }
 }
+

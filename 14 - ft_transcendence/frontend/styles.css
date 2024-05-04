@@ -464,3 +464,63 @@ input.invalid {
     background-color: #45a049; /* Cambio di colore al passaggio del mouse */
 }
 
+.settingsCard {
+	position: relative;
+	width: 300px;
+	height: auto;
+    border-radius: 35px;
+    box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.5), 10px 10px 15px rgba(70, 70, 70, 0.12);
+	transition: height 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    perspective: 10000px;
+    right: -370px; /* Distanza dal lato destro del contenitore */
+    bottom: -200px; /* Distanza dal fondo del contenitore */
+    overflow: hidden;
+}
+
+.settingsContent {
+    flex: 1; /* Prende tutto lo spazio disponibile */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.settingsDetails {
+    flex-grow: 0; /* Non permettere ai dettagli di crescere, così i button restano in alto */
+}
+
+.actionSettingsButton {
+    display: flex;
+    flex-direction: column; /* Imposta i button in colonna */
+    align-items: center; /* Centra i button orizzontalmente */
+    justify-content: center; /* Centra i button verticalmente */
+    width: 100%; 
+}
+
+.full-width-button {
+    width: 80%; /* Larghezza ridotta per permettere il margine */
+    margin: 10px auto; /* Margine superiore e inferiore, auto per i lati */
+    box-sizing: border-box;
+    background-color: transparent;
+    outline: none;
+    transition: background-color 0.1s, border-color 0.1s, transform 0.1s;
+
+    border: 2px solid transparent;
+}
+
+.full-width-button:hover {
+    transform: scale(1.1); /* Effetto di ingrandimento al passaggio del mouse */
+    box-shadow:
+    -10px -10px 15px rgba(255, 255, 255, 0.5),
+    10px 10px 15px rgba(70, 70, 70, 0.12),
+    inset -10px -10px 15px rgba(255, 255, 255, 0.5),
+    inset 10px 10px 15px rgba(70, 70, 70, 0.12);
+
+    color: #fff; /* Cambio del colore del testo al passaggio del mouse */
+}
+
+.full-width-button:first-child {
+    margin-top: 2; /* Nessun margine superiore solo per il primo button */
+}
