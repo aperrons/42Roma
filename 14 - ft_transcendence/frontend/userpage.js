@@ -128,14 +128,27 @@ function createCard(user) {
     // Creazione e posizionamento dei pulsanti actionButton tra il nome e le statistiche
     const actionButton = document.createElement('div');
     actionButton.className = 'actionButton';
+
     const playBongButton = document.createElement('button');
     playBongButton.textContent = 'Play Bong!';
     playBongButton.onclick = () => changeContent('Play Bong');
-    const organizeTournamentButton = document.createElement('button');
-    organizeTournamentButton.textContent = 'Organize Tournament';
-    organizeTournamentButton.onclick = () => changeContent('Organize Tournament');
+
+    const organizeBongTournamentButton = document.createElement('button');
+    organizeBongTournamentButton.textContent = 'Organize Bong Tournament';
+    organizeBongTournamentButton.onclick = () => changeContent('Organize Bong Tournament');
+
+    const playSpaceInvadersButton = document.createElement('button');
+    playSpaceInvadersButton.textContent = 'Play Space Invaders!';
+    playSpaceInvadersButton.onclick = () => changeContent('Play Space Invaders');
+
+    const organizeSpaceInvadersTournamentButton = document.createElement('button');
+    organizeSpaceInvadersTournamentButton.textContent = 'Organize Space Invaders Tournament';
+    organizeSpaceInvadersTournamentButton.onclick = () => changeContent('Organize Space Invaders Tournament');
+
     actionButton.appendChild(playBongButton);
-    actionButton.appendChild(organizeTournamentButton);
+    actionButton.appendChild(organizeBongTournamentButton);
+    actionButton.appendChild(playSpaceInvadersButton);
+    actionButton.appendChild(organizeSpaceInvadersTournamentButton);
     details.appendChild(actionButton); // Inserisci qui prima delle statistiche
 
     // Sezione delle statistiche
@@ -184,7 +197,7 @@ export function changeContent(view) {
     switch(view) {
         case 'Home Page':
             // Esegui il file JavaScript per la Home Page
-            import('./home.js').then(module => {
+            import('./homeView.js').then(module => {
                 module.loadHomePage(container);
             });
             break;
@@ -211,10 +224,22 @@ export function changeContent(view) {
                 module.loadPlayBongPage(container);
             });
             break;
-        case 'Organize Tournament':
+        case 'Organize Bong Tournament':
             // Esegui il file JavaScript per la pagina "Seguici"
-            import('./organizetournament.js').then(module => {
-                module.loadOrganizeTournamentPage(container);
+            import('./organizebongtournament.js').then(module => {
+                module.loadOrganizeBongTournamentPage(container);
+            });
+            break;
+        case 'Play Space Invaders':
+            // Esegui il file JavaScript per la pagina di contatto
+            import('./playspaceinvaders.js').then(module => {
+                module.loadPlaySpaceInvadersPage(container);
+            });
+            break;
+        case 'Organize Space Invaders Tournament':
+            // Esegui il file JavaScript per la pagina "Seguici"
+            import('./organizespaceinvaderstournament.js').then(module => {
+                module.loadOrganizeSpaceInvadersTournamentPage(container);
             });
             break;
         case 'Logout':

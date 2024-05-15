@@ -41,7 +41,7 @@ services:
   frontend:
     build: ./frontend
     volumes:
-      - ./frontend:/usr/share/nginx/html
+      - ./frontend:/usr/share/nginx/html/ft_transcendence
     ports:
       - "80:80"
       - "443:443"

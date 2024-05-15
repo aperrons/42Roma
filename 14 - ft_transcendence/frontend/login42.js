@@ -1,5 +1,5 @@
 import { userpage } from './userpage.js';
-import { getCsrfToken } from '/utils.js'
+import { getCsrfToken } from './utils.js'
 
 document.getElementById('loginIn42Button').addEventListener('click', login42);
 
