@@ -197,7 +197,7 @@ export function changeContent(view) {
     switch(view) {
         case 'Home Page':
             // Esegui il file JavaScript per la Home Page
-            import('./homeView.js').then(module => {
+            import('./Views/homeView.js').then(module => {
                 module.loadHomePage(container);
             });
             break;

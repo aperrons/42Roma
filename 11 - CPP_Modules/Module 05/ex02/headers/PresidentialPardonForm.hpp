@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperrone <aperrone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,23 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRATEXCEPTION_HPP
-#define BUREAUCRATEXCEPTION_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
-#include <exception>
+#include "AForm.hpp"
+#include <string>
 
-class GradeTooHighException : public std::exception {
-    public:
-        virtual const char* what() const throw() {
-            return "Grade too high";
-        }
-};
+class PresidentialPardonForm : public AForm {
+public:
+    PresidentialPardonForm(const std::string& target);
+    PresidentialPardonForm(const PresidentialPardonForm& other);
+    PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
+    ~PresidentialPardonForm();
 
-class GradeTooLowException : public std::exception {
-    public:
-        virtual const char* what() const throw() {
-            return "Grade too low";
-        }
+    void execute(const Bureaucrat& executor) const;
+
+private:
+    std::string _target;
 };
 
 #endif
+

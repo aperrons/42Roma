@@ -18,8 +18,8 @@ body, html {
 }
 
 .main-content {
-    margin-left: 50%;
     display: block;
+    text-align: center;
 }
 
 .friends-icon-container {

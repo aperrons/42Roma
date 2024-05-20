@@ -1,13 +1,13 @@
-import { isValidEmail, isValidName, isAdult, isValidPassword } from './utils.js';
-import { userpage } from './userpage.js';
+//import { isValidEmail, isValidName, isAdult, isValidPassword } from './utils.js';
+//import { userpage } from './userpage.js';
 import { getCsrfToken } from './utils.js';
-
-document.getElementById('firstName').addEventListener('focusout', validateName);
-document.getElementById('lastName').addEventListener('focusout', validateName);
-document.getElementById('birthDate').addEventListener('focusout', validateAge);
+/*
+document.getElementById('first-name').addEventListener('focusout', validateName);
+document.getElementById('last-name').addEventListener('focusout', validateName);
+document.getElementById('birth-date').addEventListener('focusout', validateAge);
 document.getElementById('email').addEventListener('focusout', validateEmail);
-document.getElementById('newUsername').addEventListener('focusout', validateName);
-document.getElementById('newPassword').addEventListener('input', validatePassword);
+document.getElementById('new-username').addEventListener('focusout', validateName);
+document.getElementById('new-password').addEventListener('input', validatePassword);
 document.getElementById('form').addEventListener('submit', register);
 
 function displayError(message) {
@@ -71,7 +71,7 @@ function validatePassword() {
 }
 
 function checkFormValidity() {
-    const inputs = document.querySelectorAll('#firstName, #lastName, #birthDate, #email, #newUsername, #newPassword');
+    const inputs = document.querySelectorAll('#first-name, #last-name, #birth-date, #email, #new-username, #new-password');
     const allValid = Array.from(inputs).every(input => {
         return input.value.trim() !== "" && !input.classList.contains('invalid');
     });
@@ -80,24 +80,25 @@ function checkFormValidity() {
     registerSubmitButton.disabled = !allValid;
 
     console.log('Register button enabled:', !registerSubmitButton.disabled);
-}
+}*/
 
 
-async function register(event) {
+export async function register(event) {
     event.preventDefault();
-    if (document.getElementById('registerSubmitButton').disabled) {
+    if (document.getElementById('register-submit-button').disabled) {
         alert('Correggi gli errori nel form prima di registrarti.');
         return;
     }
-
+    console.log("SIAMOOOOOO QUIIIIIIIIIIIIII")
+/*
     const userData = {
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        birthDate: document.getElementById('birthDate').value,
+        firstName: document.getElementById('first-name').value,
+        lastName: document.getElementById('last-name').value,
+        birthDate: document.getElementById('birth-nate').value,
         email: document.getElementById('email').value,
-        username: document.getElementById('newUsername').value,
-        password: document.getElementById('newPassword').value,
-    };
+        username: document.getElementById('new-username').value,
+        password: document.getElementById('new-password').value,
+    };*/
 
     const csrfToken = getCsrfToken();
 
@@ -121,7 +122,7 @@ async function register(event) {
 
         window.AppData.user = data;
         console.log(window.AppData.user);
-        userpage(data.user);  // Chiama una funzione che gestisce la navigazione dell'utente loggato
+        //userpage(data.user);  // Chiama una funzione che gestisce la navigazione dell'utente loggato
     } catch (error) {
         alert('Registration failed: ' + error.message);  // Avvisa l'utente del fallimento del login
     }

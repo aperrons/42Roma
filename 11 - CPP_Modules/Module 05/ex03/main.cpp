@@ -14,21 +14,34 @@
 #include "headers/ShrubberyCreationForm.hpp"
 #include "headers/RobotomyRequestForm.hpp"
 #include "headers/PresidentialPardonForm.hpp"
+#include "headers/Intern.hpp"
 
 int main() {
     try {
         Bureaucrat bob("Bob", 1);
-        ShrubberyCreationForm shrubbery("home");
-        RobotomyRequestForm robotomy("Alice");
-        PresidentialPardonForm pardon("Eve");
+        Intern someRandomIntern;
 
-        bob.signForm(shrubbery);
-        bob.signForm(robotomy);
-        bob.signForm(pardon);
+        AForm* shrubbery = someRandomIntern.makeForm("shrubbery creation", "home");
+        AForm* robotomy = someRandomIntern.makeForm("robotomy request", "Bender");
+        AForm* pardon = someRandomIntern.makeForm("presidential pardon", "Eve");
+        AForm* unknown = someRandomIntern.makeForm("unknown form", "Unknown");
 
-        bob.executeForm(shrubbery);
-        bob.executeForm(robotomy);
-        bob.executeForm(pardon);
+        if (shrubbery) {
+            bob.signForm(*shrubbery);
+            bob.executeForm(*shrubbery);
+            delete shrubbery;
+        }
+        if (robotomy) {
+            bob.signForm(*robotomy);
+            bob.executeForm(*robotomy);
+            delete robotomy;
+        }
+        if (pardon) {
+            bob.signForm(*pardon);
+            bob.executeForm(*pardon);
+            delete pardon;
+        }
+        delete unknown; // should be NULL
     } catch (std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }

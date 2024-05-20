@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucrat
+NAME = converter
 CC = c++
 FLAGS = -Wall -Wextra -Werror
 CCVERSION = -std=c++98
